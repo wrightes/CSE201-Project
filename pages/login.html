@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
-    <title>AppSurf - Mass Effect</title>
+    <title>AppSurf - Login</title>
   </head>
   
   <body style="font-family: Verdana;">
@@ -50,30 +50,15 @@
 	</nav>
   
 	<div class="container my-3">
-		<div>
-		<h2>Mass Effect</h2>
-			<image src="../img/masseffectLogo.jpg" alt="gameLogo" id="gameLogo">
-		</div>
-	
-		<div>
-			<p>
-				<strong>Developer:</strong> Bioware<br>
-				<strong>Publisher:</strong> Electronic Arts<br>
-				<strong>Platforms:</strong> Playstation 3, Xbox 360, Microsoft Windows<br>
-				<strong>Price:</strong> $59.99<br>
-				<strong>Release Date:</strong> November 20, 2007<br>
-				<strong>Summary:</strong> Assume the role of Commander Shepard, an elite soldier and captain of the 
-				starship "Normandy". The year is 2183 and humanity has unlocked the means to traverse the milky way, 
-				gather your crew and set out to explore new worlds, unravel alien plots, and save the galaxy.<br>
-			</p>
-		</div>
-	
-		<div>
-			<h3>Comments:</h3>
-			<p>
-				Leave a comment: <br>
-				<form><textarea class="form-control" rows="5" cols="50" placeholder="Leave your comment here."></textarea></form>
-			</p>
+		<h2>Login</h2>
+		<div class="form-group">
+			<label for="uname"><b>Username:</b></label><br>
+			<input type="text" class="form-control" placeholder="Username" name="uname" required><br><br>
+			
+			<label for="psw"><b>Password:</b></label><br>
+			<input type="password" class="form-control" placeholder="Password" name="psw" required><br><br>
+			
+			<button type="submit" class="btn btn-primary">Login</button>
 		</div>
 	</div>
 	
