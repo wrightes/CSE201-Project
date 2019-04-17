@@ -1,4 +1,56 @@
 <!DOCTYPE html>
+
+<?php
+	class user {
+		private $username;
+		private $password;
+		public $modAuth;
+		public $adminAuth;
+		
+		public __construct() {
+			$username = "user";
+			$password = "password";
+		}
+		
+		public __construct(string $u, string $p) {
+			$username = $u;
+			$password = $p;
+			public $modAuth = false;
+			public $adminAuth = false;
+		}
+		
+		public function getUsername {
+			return $username;
+		}
+		
+		public function verifyPwd(string $p) {
+			if(password_verify($p, $password)
+				return true;
+			else
+				return false;
+		}
+	}
+
+	class moderator extends user {
+		public __construct() {
+			parent::__construct();
+			public $modAuth = true;
+		}
+		
+		public __construct(string $u, string $p) {
+			parent::__construct($u, $p);
+			public $modAuth = true;
+		}
+	}
+
+	class admin extends user {
+		public __construct(string $u, string $p) {
+			parent::__construct($u, $p);
+			public $adminAuth = true;
+		}
+	}
+?>
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -19,13 +71,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
-	<!-- MDBootstrap Datatables 
-	<link href="css/addons/datatables.min.css" rel="stylesheet">
-	<script type="text/javascript" src="js/addons/datatables.min.js"></script>-->
-	
-	<!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" rel="stylesheet"/>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
-	-->
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 	
