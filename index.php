@@ -205,7 +205,7 @@
 				<td>FromSoftware</td>
 				<td>PS4</td>
 				<td>$59.99</td>
-				<td><a class="btn btn-info" href="#">Go</a></td>
+				<td><a class="btn btn-info" href="apppages/bloodbourne.html">Go</a></td>
 			</tr>
 			
 			<tr>
