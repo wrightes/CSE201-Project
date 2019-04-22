@@ -149,7 +149,7 @@
 				<td>FromSoftware</td>
 				<td>PS4, Xbox One, PC</td>
 				<td>$59.99</td>
-				<td><a class="btn btn-info" href="#">Go</a></td>
+				<td><a class="btn btn-info" href="apppages/sekiro.html">Go</a></td>
 			</tr>
 			
 			<tr>
@@ -213,7 +213,7 @@
 				<td>Blizzard Entertainment</td>
 				<td>PS4, Xbox One, PC</td>
 				<td>$29.99</td>
-				<td><a class="btn btn-info" href="#">Go</a></td>
+				<td><a class="btn btn-info" href="apppages/overwatch.html">Go</a></td>
 			</tr>
 			</table>
 			</div>
