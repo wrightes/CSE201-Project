@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
 	<!-- css stylesheet -->
-	<link rel="stylesheet" href="../css/stylesheet.css">
+	<!--<link rel="stylesheet" href="css/stylesheet.css">-->
 	
     <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	
 	<!-- javascript -->
-	<script src="../js/script.js"></script>
+	<!--<script src="js/script.js"></script>-->
 	
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -24,51 +24,78 @@
   </head>
   
   <body style="font-family: Verdana;">
-	<nav>
-		<div>AppSurf</div>
-		<div><a href="../appsurf.html">Home</a></div>
-		<div id="search"><form>
-			Search: <input type="text" name="search"></div>
+	<nav class="navbar navbar-dark bg-dark text-light">
+		<a class="navbar-brand">AppSurf</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item">
+					<a class="nav-link" href="../pages/login.html">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="../index.html">Home</a>
+				</li>
+			</ul>
+		<form class="form-inline">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
+			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		</form>
+		</div>
 	</nav>
   
-	<div>
-		<h2>Mass Effect</h2>
-		<image src="../images/masseffectLogo.jpg" alt="gameLogo" id="gameLogo">
-	</div>
-	
-	<div>
-		<p>
-			<strong>Developer:</strong> Bioware<br>
-			<strong>Publisher:</strong> Electronic Arts<br>
-			<strong>Platforms:</strong> Playstation 3, Xbox 360, Microsoft Windows<br>
-			<strong>Price:</strong> $59.99<br>
-			<strong>Release Date:</strong> November 20, 2007<br>
-			<strong>Summary:</strong> Assume the role of Commander Shepard, an elite soldier and captain of the 
-			starship "Normandy". The year is 2183 and humanity has unlocked the means to traverse the milky way, 
-			gather your crew and set out to explore new worlds, unravel alien plots, and save the galaxy.<br>
-		</p>
-	</div>
-	
-	<div>
-		<h3>Comments:</h3>
-		<p>
-			Leave a comment: <br>
-			<form><textarea rows="5" cols="50" placeholder="Leave your comment here."></textarea></form>
-		</p>
-	</div>
-		
-	<footer> 
+	<div class="container my-3">
 		<div>
-			<image src="../images/AppLogo.jpg" alt="logo" id="logo">
+		<h2>Mass Effect</h2>
+			<image src="../images/masseffectLogo.jpg" alt="gameLogo" id="gameLogo">
 		</div>
-		<div id="footerInfo">
-			<h2>APPerture Software</h3>
-			<p>CSE 201 Software Development Project.<br>
-				Group A-5: <br>
-				Andrew Nieto, Evan Wright, Jacob Szulewski, <br>
-				Qinze Wu, Michael Gallagher, Qilin Yang </p>
+	
+		<div>
+			<p>
+				<strong>Developer:</strong> Bioware<br>
+				<strong>Publisher:</strong> Electronic Arts<br>
+				<strong>Platforms:</strong> Playstation 3, Xbox 360, Microsoft Windows<br>
+				<strong>Price:</strong> $59.99<br>
+				<strong>Release Date:</strong> November 20, 2007<br>
+				<strong>Summary:</strong> Assume the role of Commander Shepard, an elite soldier and captain of the 
+				starship "Normandy". The year is 2183 and humanity has unlocked the means to traverse the milky way, 
+				gather your crew and set out to explore new worlds, unravel alien plots, and save the galaxy.<br>
+			</p>
 		</div>
+	
+		<div>
+			<h3>Comments:</h3>
+			<p>
+				Leave a comment: <br>
+				<form><textarea class="form-control" rows="5" cols="50" placeholder="Leave your comment here."></textarea></form>
+			</p>
+		</div>
+	</div>
+	
+	<footer class="page-footer small bg-dark text-light pt-4"> 
+		<div class="container-fluid text-center text-md-left">
+			<div class="row">
+			
+			<div class="col-md-2 mt-md-0 mt-3">
+				<image src="../images/AppLogo.jpg" alt="logo" class="img-fluid">
+			</div>
+			<div class="col-md-6 mb-md-0 mb-3">
+				<h4>APPerture Software</h4>
+				<p>CSE 201 Software Development Project.<br>
+					Group A-5: <br>
+					Andrew Nieto, Evan Wright, Jacob Szulewski, <br>
+					Qinze Wu, Michael Gallagher, Qilin Yang </p>
+				</div>
+		</div>
+		
+		<div class="footer-copyright text-center py-3"> @2019 Copyright: Nonexistent </div>
 	</footer>
 	
+    
   </body>
 </html>
