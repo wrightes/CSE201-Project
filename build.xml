@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project name="201project" default="build">
+	<property name="src.dir" value="${project.basedir}/src" />
+	<property name="css.dir" value="${src.dir}/css" />
+	<property name="js.dir" value="${src.dir}/js" />
+	<property name="img.dir" value="${src.dir}/img" />
+	
+	<property name="pages.dir" value="${project.basedir}/pages" />
+	
+	<fileset id="php.files" dir="${project.basedir}">
+		<include name="*/*.php" />
+		<include name="*/src/**/*.php" />
+		<include name="*/pages/**/*.php" />
+	</fileset>
+	
+	<target name="build" />
+</project>
+	
