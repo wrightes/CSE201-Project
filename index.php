@@ -67,6 +67,7 @@
 //	}
 	
 	
+	session_start();
 ?>
 
 <html lang="en">
@@ -101,7 +102,7 @@
   <body style="font-family: Verdana;">
 	<nav class="navbar navbar-dark bg-dark text-light">
 		<a class="navbar-brand">AppSurf</a>
-	
+		<a class="navbar-brand">Welcome, <?php echo $_SESSION["user"]; ?></a>
 		
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>

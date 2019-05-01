@@ -1,4 +1,6 @@
 <?php 
+
+	// connect to the data base
 	$host = "localhost";
 	$dbName = "CSE201Test";
 	
@@ -9,7 +11,13 @@
 	
 	while ($row = $result->fetch_assoc()) {
 		if ($_POST['uname'] == $row['UserName'] && $_POST['psw'] == $row['Password']) {
-			echo "User Found";
+			session_start();
+			$_SESSION["user"] = $_POST["uname"];
+			$_SESSION["loggedin"] = true;
+			header("location: ../index.php");
+			exit;
 		}
 	}
+	
+	header("location: login.html");
 ?>
