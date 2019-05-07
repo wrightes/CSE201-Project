@@ -1,71 +1,23 @@
 <!DOCTYPE html>
-
-<?php
-	class user {
-		private $username;
-		private $password;
-		public $modAuth;
-		public $adminAuth;
-		
-//		function __construct() {
-//			$username = "user";
-//			$password = "password";
-//		}
-		
-		function __construct(string $u, string $p) {
-			$username = $u;
-			$password = $p;
-			$modAuth = false;
-			$adminAuth = false;
-		}
-		
-		public function getUsername() {
-			return $username;
-		}
-		
-		public function verifyPwd(string $p) {
-			if(password_verify($p, $password))
-				return true;
-			else
-				return false;
-		}
-	}
-
-	class moderator extends user {
-//		function __construct() {
-//			parent::__construct();
-//			$modAuth = true;
-//		}
-		
-		public function __construct(string $u, string $p) {
-			parent::__construct($u, $p);
-			$modAuth = true;
-		}
-	}
-
-	class admin extends user {
-		function __construct(string $u, string $p) {
-			parent::__construct($u, $p);
-			$adminAuth = true;
+<?php   
+	session_start();
+	
+	if (isset($_GET['action'])) {
+		if ($_GET['action']=="logout") {
+			session_destroy();
+			header("location: index.php");
+			exit;
 		}
 	}
 	
-//	$userFile = file_get_contents("pages/user.txt");
-//	
-//	$userData = preg_split('/[\s,]+/', $userFile, -1, PREG_SPLIT_NO_EMPTY);
-//	
-//	$permission = $userData[0];
-//	$userName = $userData[1];
-//	$password = $userData[2];
-//	
-//	if ($permission = "admin") {
-//		$currentUser = new admin($userName, $password);
-//	} else if ($permission = "mod") {
-//		$currentUser = new moderator($userName, $password);
-//	} else {
-//		$currentUser = new User($userName, $password);
-//	}
+	require_once("index.php"); 
+	require_once("database\SQLcredentials.php");
 	
+	$mysqli = mysqli_connect($databaseHost, $databaseUser, $databasePassword, $databaseName);
+	if (mysqli_connect_errno($mysqli)) {     
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		die;
+	}
 	
 ?>
 
@@ -74,9 +26,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<!-- css stylesheet -->
-	<!--<link rel="stylesheet" href="../css/stylesheet.css">-->
 	
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -93,7 +42,7 @@
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 	
 	<!-- javascript -->
-	<script src="js/script.js"></script>
+	<script src="src/js/script.js"></script>
 	
     <title>AppSurf - Home</title>
   </head>
@@ -101,8 +50,11 @@
   <body style="font-family: Verdana;">
 	<nav class="navbar navbar-dark bg-dark text-light">
 		<a class="navbar-brand">AppSurf</a>
-	
-		
+		<?php 
+				if(isset($_SESSION['username'])) {
+					print "<a class=\"navbar-item\">Signed in as: " . $_SESSION['username'] . "</a>";
+				}
+			?>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -110,16 +62,22 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item">
-					<a class="nav-link" href="pages/login.html">Login</a>
+				<?php 
+				if(isset($_SESSION['username'])) {
+					print "<a class=\"nav-link\" action=\"logout\">Logout</a>";
+				} else {
+					print"<a class=\"nav-link\" href=\"pages/login.php\">Login</a>";
+				} 
+				?>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="pages/register.html">Register</a>
+					<a class="nav-link" href="pages/register.php">Register</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">About</a>
+					<a class="nav-link" href="pages/about.php">About</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="../index.html">Home</a>
+					<a class="nav-link" href="../index.php">Home</a>
 				</li>
 			</ul>
 			
@@ -129,10 +87,11 @@
 	<div class="container m-0">
 		<div class="row">
 			<div class="col-md-3 list-group bg-dark pl-2">
-					<button class="list-group-item list-group-item-action">Login</button>
-					<button class="list-group-item list-group-item-action">Home</button>
-					<button class="list-group-item list-group-item-action">Request page</button>
-					<button class="list-group-item list-group-item-action">Admin Portal</button>
+					<button class="list-group-item list-group-item-action" onclick="window.location.href = 'pages/login.php';">Login</button>
+					<button class="list-group-item list-group-item-action" onclick="window.location.href = 'pages/register.php';">Register</button>
+					<button class="list-group-item list-group-item-action" onclick="window.location.href = 'index.php';">Home</button>
+					<button class="list-group-item list-group-item-action" onclick="window.location.href = 'pages/request.php';">Request page</button>
+					<button class="list-group-item list-group-item-action" onclick="window.location.href = 'pages/admin.php';">Admin Portal</button>
 			</div>
 			
 			<div class="col-md-8 m-3 ">
@@ -157,85 +116,19 @@
 					<th scope="col">Page</th>
 				</tr>
 			</thead>
-			<tr>
-				<td>Mass Effect</td>
-				<td>Bioware</td>
-				<td>PS3, Xbox 360, PC</td>
-				<td>$59.99</td>
-				<td><a class="btn btn-info" href="apppages/masseffect.html">Go</a></td>
-			</tr>
-			
-			<tr>
-				<td>Sekiro</td>
-				<td>FromSoftware</td>
-				<td>PS4, Xbox One, PC</td>
-				<td>$59.99</td>
-				<td><a class="btn btn-info" href="apppages/sekiro.html">Go</a></td>
-			</tr>
-			
-			<tr>
-				<td>Cities: Skyline</td>
-				<td>Paradox Interactive</td>
-				<td>PS4, Xbox One, PC</td>
-				<td>$39.99</td>
-				<td><a class="btn btn-info" href="#">Go</a></td>
-			</tr>
-			
-			<tr>
-				<td>God Of War</td>
-				<td>Santa Monica Studios</td>
-				<td>PS4, Xbox One, PC</td>
-				<td>$59.99</td>
-				<td><a class="btn btn-info" href="#">Go</a></td>
-			</tr>
-			
-			<tr>
-				<td>The Witcher 3</td>
-				<td>CD Project Red</td>
-				<td>PS4, Xbox One, PC</td>
-				<td>$59.99</td>
-				<td><a class="btn btn-info" href="#">Go</a></td>
-			</tr>
-			
-			<tr>
-				<td>Hollow Knight</td>
-				<td>Team Cherry</td>
-				<td>PS4, Xbox One, Nintendo Switch, PC</td>
-				<td>$14.99</td>
-				<td><a class="btn btn-info" href="#">Go</a></td>
-			</tr>
-			
-			<tr>
-				<td>Red Dead Redemption II</td>
-				<td>Rockstar</td>
-				<td>PS4, Xbox One, PC</td>
-				<td>$59.99</td>
-				<td><a class="btn btn-info" href="#">Go</a></td>
-			</tr>
-			
-			<tr>
-				<td>Apex Legends</td>
-				<td>Respawn Entertainment</td>
-				<td>PS4, Xbox One, PC</td>
-				<td>Free</td>
-				<td><a class="btn btn-info" href="#">Go</a></td>
-			</tr>
-			
-			<tr>
-				<td>Bloodbourne</td>
-				<td>FromSoftware</td>
-				<td>PS4</td>
-				<td>$59.99</td>
-				<td><a class="btn btn-info" href="apppages/bloodbourne.html">Go</a></td>
-			</tr>
-			
-			<tr>
-				<td>Overwatch</td>
-				<td>Blizzard Entertainment</td>
-				<td>PS4, Xbox One, PC</td>
-				<td>$29.99</td>
-				<td><a class="btn btn-info" href="apppages/overwatch.html">Go</a></td>
-			</tr>
+			<?php
+				$res1 = mysqli_query($mysqli, "SELECT name, dev, ps4, xbox1, switch, pc, price, link FROM apps");
+				
+				while($row = mysqli_fetch_assoc($res1)) {
+						print "<tr>";
+						print "<td>" . $row['name'] . "</td>";
+						print "<td>" . $row['dev'] . "</td>";
+						print "<td> temp </td>";
+						print "<td>$" . $row['price'] . "</td>";
+						print "<td><a class=\"btn btn-info\" href=\"" . $row['link'] . "\">Go</a></td>";
+						print "</tr>";
+					}
+			?>
 			</table>
 			</div>
 			</div>
@@ -245,10 +138,6 @@
 	<footer class="page-footer small bg-dark text-light pt-4"> 
 		<div class="container-fluid text-center text-md-left">
 			<div class="row">
-			<!--
-			<div class="col-md-2 mt-md-0 mt-3">
-				<image src="../images/AppLogo.jpg" alt="logo" class="img-fluid">
-			</div>-->
 			<div class="col-md-6 mb-md-0 mb-3">
 				<h4>APPerture Software</h4>
 				<p>CSE 201 Software Development Project.<br>

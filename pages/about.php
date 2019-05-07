@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+
+<?php 
+/*
+	$host = "localhost";
+	$dbName = "CSE201Test";
+	
+	$conn = mysqli_connect($host, 'root', '', $dbName) or die("Connection failed: " . $conn->connect_error);
+	
+	$sql = "SELECT * FROM users";
+	$result = $conn->query($sql);
+	
+	while ($row = $result->fetch_assoc()) {
+		if ($_POST['uname'] == $row['UserName'] && $_POST['psw'] == $row['Password']) {
+			echo "User Found";
+		}
+	} */
+?>
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -20,14 +38,14 @@
 	
 	<!-- javascript -->
 	<script src="../js/script.js"></script>
-	
+
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
-    <title>AppSurf - Register</title>
+    <title>AppSurf - Login</title>
   </head>
   
   <body style="font-family: Verdana;">
@@ -40,13 +58,13 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item">
-					<a class="nav-link" href="../pages/login.html">Login</a>
+					<a class="nav-link" href="../pages/login.php">Login</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">About</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="../index.html">Home</a>
+					<a class="nav-link" href="../index.php">Home</a>
 				</li>
 			</ul>
 		<form class="form-inline">
@@ -57,30 +75,14 @@
 	</nav>
   
 	<div class="container my-3">
-		<h2>Sign Up</h2>
-		<form action="register.php" method="post">
-			<div class="form-group">
-				<label for="uname"><b>Username:</b></label><br>
-				<input type="text" class="form-control" placeholder="Username" name="uname" required><br><br>
-				
-				<label for="psw"><b>Password:</b></label><br>
-				<input type="password" class="form-control" placeholder="Password" name="psw" required><br><br>
-				
-				<label for="pswconfirm"><b>Confirm Password:</b></label><br>
-				<input type="password" class="form-control" placeholder="Password" name="pswconfirm" required><br><br>
-				
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-		</form>
+		<h2>About Appsurf</h2>
+		<h4>User documentation will go here</h4>
 	</div>
 	
 	<footer class="page-footer small bg-dark text-light pt-4"> 
 		<div class="container-fluid text-center text-md-left">
 			<div class="row">
 			
-			<div class="col-md-2 mt-md-0 mt-3">
-				<image src="../images/AppLogo.jpg" alt="logo" class="img-fluid">
-			</div>
 			<div class="col-md-6 mb-md-0 mb-3">
 				<h4>APPerture Software</h4>
 				<p>CSE 201 Software Development Project.<br>
@@ -92,5 +94,5 @@
 		
 		<div class="footer-copyright text-center py-3"> @2019 Copyright: Nonexistent </div>
 	</footer>
-  </body>
+	</body>
 </html>

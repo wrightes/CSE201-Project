@@ -1,4 +1,22 @@
 <!DOCTYPE html>
+
+<?php 
+/*
+	$host = "localhost";
+	$dbName = "CSE201Test";
+	
+	$conn = mysqli_connect($host, 'root', '', $dbName) or die("Connection failed: " . $conn->connect_error);
+	
+	$sql = "SELECT * FROM users";
+	$result = $conn->query($sql);
+	
+	while ($row = $result->fetch_assoc()) {
+		if ($_POST['uname'] == $row['UserName'] && $_POST['psw'] == $row['Password']) {
+			echo "User Found";
+		}
+	} */
+?>
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -6,7 +24,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
 	<!-- css stylesheet -->
-<<<<<<< HEAD
 	<!--<link rel="stylesheet" href="css/stylesheet.css">-->
 	
     <!-- Bootstrap CSS -->
@@ -14,7 +31,6 @@
 	
 	<!-- javascript -->
 	<!--<script src="js/script.js"></script>-->
-=======
 	<link rel="stylesheet" href="../css/stylesheet.css">
 	
     <!-- Bootstrap CSS -->
@@ -22,15 +38,13 @@
 	
 	<!-- javascript -->
 	<script src="../js/script.js"></script>
->>>>>>> bdde9e7345caa3696cd9a75978e6924b5b3218b5
-	
+
 	<!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
-<<<<<<< HEAD
     <title>AppSurf - Login</title>
   </head>
   
@@ -44,13 +58,13 @@
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item">
-					<a class="nav-link" href="../pages/login.html">Login</a>
+					<a class="nav-link" href="../pages/login.php">Login</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">About</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="../index.html">Home</a>
+					<a class="nav-link" href="../index.php">Home</a>
 				</li>
 			</ul>
 		<form class="form-inline">
@@ -61,16 +75,16 @@
 	</nav>
   
 	<div class="container my-3">
-		<h2>Login</h2>
-		<form>
+		<h2>Request a Page</h2>
+		<form action="register.php" method="post">
 			<div class="form-group">
-				<label for="uname"><b>Username:</b></label><br>
-				<input type="text" class="form-control" placeholder="Username" name="uname" required><br><br>
+				<label for="name"><b>Name of Game</b></label><br>
+				<input type="text" class="form-control" placeholder="Name of Game" name="name" required><br>
 				
-				<label for="psw"><b>Password:</b></label><br>
-				<input type="password" class="form-control" placeholder="Password" name="psw" required><br><br>
+				<label for="dev"><b>Developer</b></label><br>
+				<input type="password" class="form-control" placeholder="Developer" name="dev" required><br>
 				
-				<button type="submit" class="btn btn-primary">Login</button>
+				<button type="submit" class="btn btn-primary">Submit</button>
 			</div>
 		</form>
 	</div>
@@ -79,9 +93,6 @@
 		<div class="container-fluid text-center text-md-left">
 			<div class="row">
 			
-			<div class="col-md-2 mt-md-0 mt-3">
-				<image src="../images/AppLogo.jpg" alt="logo" class="img-fluid">
-			</div>
 			<div class="col-md-6 mb-md-0 mb-3">
 				<h4>APPerture Software</h4>
 				<p>CSE 201 Software Development Project.<br>
@@ -93,43 +104,5 @@
 		
 		<div class="footer-copyright text-center py-3"> @2019 Copyright: Nonexistent </div>
 	</footer>
-	
-    
-=======
-    <title>AppSurf - Home</title>
-  </head>
-  
-  <body style="font-family: Verdana;">
-	<nav>
-		<div>AppSurf</div>
-	</nav>
-  
-	<div>
-		<form>
-			<label for="uname"><b>Username:</b></label><br>
-			<input type="text" placeholder="Username" name="uname" required><br><br>
-			
-			<label for="psw"><b>Password:</b></label><br>
-			<input type="password" placeholder="Password" name="psw" required><br><br>
-			
-			<button type="submit">Login</button>
-		</form>
-		
-	</div>
-	
-	<footer> 
-		<div>
-			<image src="../images/AppLogo.jpg" alt="logo" id="logo">
-		</div>
-		<div id="footerInfo">
-			<h2>APPerture Software</h3>
-			<p>CSE 201 Software Development Project.<br>
-				Group A-5: <br>
-				Andrew Nieto, Evan Wright, Jacob Szulewski, <br>
-				Qinze Wu, Michael Gallagher, Qilin Yang </p>
-		</div>
-	</footer>
-	
->>>>>>> bdde9e7345caa3696cd9a75978e6924b5b3218b5
-  </body>
+	</body>
 </html>

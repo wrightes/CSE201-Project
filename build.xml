@@ -1,4 +1,11 @@
 <?xml version="1.0"?>
+
+<!-- 
+	This is the build script to set up the application on an apache server. 
+	Build the project with php phing and you're good to go.
+-->
+
+
 <project name="201project" default="build">
 	<property name="src.dir" value="${project.basedir}/src" />
 	<property name="css.dir" value="${src.dir}/css" />
