@@ -77,6 +77,14 @@
 	<div class="container my-3">
 		<h2>About Appsurf</h2>
 		<h4>User documentation will go here</h4>
+		<p> This is a website to search for a game you like.<br>
+		    First of all, go to home page and use your ID and password to login.<br>
+			then, search game by name, developer, register or price. <br>
+			Importantly, each attribute can be sorted as you press the button on the top.<br>
+			Once you select a game, pressing "go" button to read detailed information about it.<br>
+			If you have any special requirement, click on request button and write down your request<br>
+			Admin will review it and reflect to us <br>
+			In the end, hope you have a good enjoyment of game and our website <br>
 	</div>
 	
 	<footer class="page-footer small bg-dark text-light pt-4"> 
