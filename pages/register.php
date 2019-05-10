@@ -67,7 +67,7 @@
 				<li class="nav-item">
 				<?php 
 				if(isset($_SESSION['username'])) {
-					print "<a class=\"nav-link\" action=\"logout\">Logout</a>";
+					print "<a class=\"nav-link\" href=\"register.php?action=logout\">Logout</a>";
 				} else {
 					print"<a class=\"nav-link\" href=\"login.php\">Login</a>";
 				} 
@@ -80,7 +80,7 @@
 					<a class="nav-link" href="../index.php">Home</a>
 				</li>
 			</ul>
-		<form class="form-inline">
+		<form class="form-inline"  method="get" action="../index.php">
 			<input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
@@ -105,16 +105,16 @@
 				<?php 
 				if(isset($_POST['uname'], $_POST['psw'], $_POST['pswconfirm'])) {
 					if ($_POST['psw'] == $_POST['pswconfirm']) {
-						$sql = "INSERT INTO users (username, password) VALUES ('".$_POST['uname']."', '" . password_hash($_POST['psw'], PASSWORD_DEFAULT) . "')";
+						$sql = "INSERT INTO `users` (`username`, `password`, `mod`, `admin`) VALUES ('" . $_POST['uname'] . "', '" . password_hash($_POST['psw'], PASSWORD_DEFAULT) . "', '0', '0')";
 						if (mysqli_query($mysqli, $sql)) {
 						echo "New record created successfully!";
+						} else {
+							echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+						}
 					} else {
-						echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
+						echo "Passwords do not match";
 					}
-				} else {
-					echo "Passwords do not match";
-				}
-	}			?>
+				}	?>
 			</div>
 		</form>
 	</div>

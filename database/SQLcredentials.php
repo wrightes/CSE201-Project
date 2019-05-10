@@ -1,5 +1,5 @@
 <?php
-$databaseHost="127.0.0.1";
+$databaseHost="localhost";
 $databaseUser="root";
 $databaseName="201project";
 $databasePassword="password";

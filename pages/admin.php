@@ -80,7 +80,7 @@
 					<a class="nav-link" href="../index.php">Home</a>
 				</li>
 			</ul>
-		<form class="form-inline"  method="get" action="../index.php">
+		<form class="form-inline" method="get" action="../index.php">
 			<input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
@@ -88,57 +88,89 @@
 	</nav>
   
 	<div class="container my-3">
-		<h2>Request a Page</h2>
-		<form method="post">
-			<div class="form-group">
-				<label for="name"><b>Name of Game</b></label><br>
-				<input type="text" class="form-control" placeholder="Name of Game" name="name" required><br>
-				
-				<label for="dev"><b>Developer</b></label><br>
-				<input type="text" class="form-control" placeholder="Developer" name="dev" required><br>
-				
-				<input type="hidden" value="0" name="ps4">
-				<input type="checkbox" class="form-check-input" value="1" name="ps4">
-				<label class="form-check-label" for="ps4">Available on Playstation 4</label><br>
-				
-				<input type="hidden" value="0" name="xbox1">
-				<input type="checkbox" class="form-check-input" value="1" name="xbox1">
-				<label class="form-check-label" for="xbox1">Available on Xbox 1</label><br>
-				
-				<input type="hidden" value="0" name="switch">
-				<input type="checkbox" class="form-check-input" value="1" name="switch">
-				<label class="form-check-label" for="switch">Available on Nintendo Switch</label><br>
-				
-				<input type="hidden" value="0" name="pc">
-				<input type="checkbox" class="form-check-input" value="1" name="pc">
-				<label class="form-check-label" for="pc">Available on PC</label><br>
-				
-				<label for="price"><b>Price</b></label><br>
-				<input type="number" class="form-control" min="0" step=".01" name="price" required><br>
-				
-				<label for="link"><b>Link to store page</b></label><br>
-				<input type="text" class="form-control" placeholder="Link to store page" name="link" required><br>
-				
-				<label for="desc"><b>Description of game</b></label><br>
-				<textarea class="form-control" placeholder="Description of Game" name="desc" rows="3" required></textarea><br>
-				
-				
-				<button type="submit" method="post" class="btn btn-primary">Submit</button>
-			</div>
+	<?php
+		if(!isset($_SESSION['username'])) {
+			print "You must sign in to view this page";
+		} else if($_SESSION['modAuth']) {
 			
-			<div class="container">
-				<?php 
-					if(isset($_POST['name'])) {
-						$sql = "INSERT INTO `request` (`name`, `dev`, `ps4`, `xbox1`, `switch`, `pc`, `price`, `link`, `desc`) VALUES ('" . $_POST['name'] . "', '" . $_POST['dev'] . "', '" . $_POST['ps4'] . "', '" . $_POST['xbox1'] . "', '" . $_POST['switch'] . "', '" . $_POST['pc'] . "', '" . $_POST['price'] . "', '" . $_POST['link'] . "', '" . $_POST['desc'] . "')";
-						if (mysqli_query($mysqli, $sql)) {
-						echo "Request submitted.";
-						} else {
-							echo "Error: " . $sql . "<br>" . mysqli_error($mysqli);
-						}
+			if(isset($_POST['approve'])) {
+				$res = mysqli_fetch_assoc(mysqli_query($mysqli, "SELECT * FROM request WHERE name='" . $_POST['approve'] . "'"));
+				
+				$sql1 = "INSERT INTO `apps` (`name`, `dev`, `ps4`, `xbox1`, `switch`, `pc`, `price`, `link`, `desc`) VALUES ('" . $res['name'] . "', '" . $res['dev'] . "', '" . $res['ps4'] . "', '" . $res['xbox1'] . "', '" . $res['switch'] . "', '" . $res['pc'] . "', '" . $res['price'] . "', '" . $res['link'] . "', '" . $res['desc'] . "')";
+				if (mysqli_query($mysqli, $sql1)) {
+					echo "Request Approved";
+				} else {
+					echo "Error: " . $sql1 . "<br>" . mysqli_error($mysqli);
+				}
+				
+				$sql2 = "DELETE FROM request WHERE name='" . $_POST['approve'] . "'";
+				if (mysqli_query($mysqli, $sql2)) {
+					echo " - Successfully Processed";
+				} else {
+					echo "Error: " . $sql2 . "<br>" . mysqli_error($mysqli);
+				}
+			} else if(isset($_POST['disapprove'])) {
+				$sql3 = "DELETE FROM request WHERE name='" . $_POST['disapprove'] . "'";
+				if (mysqli_query($mysqli, $sql3)) {
+					echo "Request Removed";
+				} else {
+					echo "Error: " . $sql3 . "<br>" . mysqli_error($mysqli);
+				}
+			}
+	
+	?>
+		<h2>Requests:</h2>
+		<table class="table table-hover" id="repo">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Developer</th>
+					<th scope="col">Platform</th>
+					<th scope="col">Price</th>
+					<th scope="col">Approve</th>
+					<th scope="col">Disapprove</th>
+				</tr>
+			</thead>
+			<?php
+				$res1 = mysqli_query($mysqli, "SELECT name, dev, ps4, xbox1, switch, pc, price FROM request");
+				
+				while($row = mysqli_fetch_assoc($res1)) {
+						print "<tr>";
+						print "<td>" . $row['name'] . "</td>";
+						print "<td>" . $row['dev'] . "</td>";
+						print "<td>";
+						if($row['ps4'])
+							print "Playstation 4<br>";
+						if($row['xbox1'])
+							print "Xbox 1<br>";
+						if($row['switch'])
+							print "Nintendo Switch<br>";
+						if($row['pc'])
+							print "PC<br>";
+				
+						print "</td>";
+						print "<td>$" . $row['price'] . "</td>";
+						print "<td>
+								<form  method=\"post\">
+								<input type=\"hidden\" value=\"" . $row['name'] . "\" name=\"approve\">
+								<button type=\"submit\" class=\"btn btn-info\">Approve</button>
+									</form></td>";
+						print "<td>
+								<form  method=\"post\">
+								<input type=\"hidden\" value=\"" . $row['name'] . "\" name=\"disapprove\">
+								<button type=\"submit\" class=\"btn btn-info\">Disapprove</button>
+									</form></td>";
+						print "</tr>";
 					}
 				?>
-			</div>
-		</form>
+				
+			</table>
+		<?php 
+		} else {
+			print "You are not authorized to view this page";
+		}
+		?>
+		</div>
 	</div>
 	
 	<footer class="page-footer small bg-dark text-light pt-4"> 

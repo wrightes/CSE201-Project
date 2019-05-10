@@ -20,26 +20,21 @@
 	}
 	
 	if(isset($_POST['uname']) && isset($_POST['psw'])) {
-		$verif1 = false;
-		$res = mysqli_query($mysqli, "SELECT username FROM users");
+		$verified = false;
+		$res = mysqli_query($mysqli, "SELECT * FROM users");
 		
 		while($row = mysqli_fetch_assoc($res)) {
-			if($row['username'] == $_POST['uname'])
-				$verif1 = true;
+			if($row['username'] == $_POST['uname'] && password_verify($_POST['psw'], $row['password'])) {
+				$verified = true;
+				$_SESSION['username'] = $row['username'];
+				$_SESSION['modAuth'] = $row['mod'];
+				$_SESSION['adminAuth'] = $row['admin'];
+			}
 		}
 		
-		$verif2 = false;
-		$pres = mysqli_query($mysqli, "SELECT password FROM users");
 		
-		while($row = mysqli_fetch_assoc($pres)) {
-			if(password_verify($_POST['psw'], $row['password']))
-				$verif2 = true;
-		}
-		
-		if ($verif1 && $verif2) {     
-			$_SESSION['username'] = $_POST['uname'];
-		} else {     
-			$valid = false;					
+		if (!$verified) {        
+			echo "invalid credentials";				
 		}
 	} 
 ?>
@@ -79,6 +74,7 @@
 	<nav class="navbar navbar-dark bg-dark text-light">
 		<a class="navbar-brand">AppSurf</a>
 		<?php 
+				
 				if(isset($_SESSION['username'])) {
 					print "<a class=\"navbar-item\">Signed in as: " . $_SESSION['username'] . "</a>";
 				}
@@ -105,7 +101,7 @@
 					<a class="nav-link" href="../index.php">Home</a>
 				</li>
 			</ul>
-		<form class="form-inline">
+		<form class="form-inline"  method="get" action="../index.php">
 			<input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>

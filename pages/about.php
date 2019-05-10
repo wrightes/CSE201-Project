@@ -67,7 +67,7 @@
 					<a class="nav-link" href="../index.php">Home</a>
 				</li>
 			</ul>
-		<form class="form-inline">
+		<form class="form-inline" method="get" action="../index.php">
 			<input class="form-control mr-sm-2" type="text" placeholder="Search" name="search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 		</form>
@@ -76,7 +76,20 @@
   
 	<div class="container my-3">
 		<h2>About Appsurf</h2>
-		<h4>User documentation will go here</h4>
+		<p>This is a website dedicated to helping you on your quest to find a game thats perfect for you</p>
+		<h4>Logging in</h4>
+		<p>First of all, click on the "login: tab to redirect to our login portal where you can use your ID and password to login.</p>
+		<h4>Searching and sorting</h4>
+		<p>You may type into the searchbar to search a game by name, developer, platform or price. <br> </p>
+			You can also click on each of the column headers to sort by that category<br>
+		<h4>Game pages</h4>	
+		<p>Once you select a game, pressing the "go" button will bring you to that games page, which lists detailed information about it.<br>
+			If you are logged in, you can leave comments and like and dislike other user's comments</p>
+		<h4>Request a page</h4>
+		<p>If you have a game that you would like to see added to our site, click on the request tab and fill out the request form<br>
+			Site admins will review it and either approve it or deny it, if approved, it will be added to the website</p>
+		<h4>Thank you for visiting AppSurf</h4>
+		<p>In the end, we hope you enjoy our website and that it helps you search for the game thats perfect for you.</p>
 	</div>
 	
 	<footer class="page-footer small bg-dark text-light pt-4"> 
