@@ -76,6 +76,7 @@
   
 	<div class="container my-3">
 		<h2>About Appsurf</h2>
+<<<<<<< HEAD
 		<p>This is a website dedicated to helping you on your quest to find a game thats perfect for you</p>
 		<h4>Logging in</h4>
 		<p>First of all, click on the "login: tab to redirect to our login portal where you can use your ID and password to login.</p>
@@ -90,6 +91,17 @@
 			Site admins will review it and either approve it or deny it, if approved, it will be added to the website</p>
 		<h4>Thank you for visiting AppSurf</h4>
 		<p>In the end, we hope you enjoy our website and that it helps you search for the game thats perfect for you.</p>
+=======
+		<h4>User documentation will go here</h4>
+		<p> This is a website to search for a game you like.<br>
+		    First of all, go to home page and use your ID and password to login.<br>
+			then, search game by name, developer, register or price. <br>
+			Importantly, each attribute can be sorted as you press the button on the top.<br>
+			Once you select a game, pressing "go" button to read detailed information about it.<br>
+			If you have any special requirement, click on request button and write down your request<br>
+			Admin will review it and reflect to us <br>
+			In the end, hope you have a good enjoyment of game and our website <br>
+>>>>>>> d1bf9efca20c98e931a2b4424f99e68c41584ef9
 	</div>
 	
 	<footer class="page-footer small bg-dark text-light pt-4"> 
